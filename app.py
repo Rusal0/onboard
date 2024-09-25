@@ -401,7 +401,7 @@ def display_day_plan(week, day, start_date, user_name):
 
 
 def main():
-    st.title("30-Day Onboarding Plan")
+    st.title("Program Manager Onboarding plan")
     user_name = st.text_input("Enter your full name")
     start_date = st.date_input("Select Start Date", value=datetime.today())
 
