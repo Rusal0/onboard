@@ -382,7 +382,14 @@ def display_day_plan(week, day, start_date, user_name):
     afternoon_activities = onboarding_plan[week][day].get("Afternoon", [])
 
     total_days = (int(week.split()[-1]) - 1) * 5 + (int(day.split()[-1]) - 1)
-    current_date = start_date + timedelta(days=total_days)
+
+    # Calculate the current date, skipping weekends (Saturday and Sunday)
+    current_date = start_date
+    days_added = 0
+    while days_added < total_days:
+        current_date += timedelta(days=1)
+        if current_date.weekday() < 5:  # Monday=0, Tuesday=1, ..., Friday=4
+            days_added += 1
 
     st.write(f"**Onboarding Plan for {user_name} - {week} {day}**")
     st.write(f"**Date:** {current_date.strftime('%Y-%m-%d')}")
@@ -398,7 +405,6 @@ def display_day_plan(week, day, start_date, user_name):
         with st.expander(activity["activity"]):
             st.write(f"- **Contact:** {activity['contact']}")
             st.write(f"- **Description:** {activity['description']}")
-
 
 def main():
     st.title("Program Manager Onboarding plan")
