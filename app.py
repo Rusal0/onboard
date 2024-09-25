@@ -1,3 +1,4 @@
+import streamlit as st
 from datetime import datetime, timedelta
 
 # Onboarding Data with contact persons
@@ -220,22 +221,32 @@ def display_day_plan(week, day, start_date):
     morning_text = "\n".join([f"{activity[0]} (Contact: {activity[1]})" for activity in morning_activities])
     afternoon_text = "\n".join([f"{activity[0]} (Contact: {activity[1]})" for activity in afternoon_activities])
 
-    print(f"Date: {current_date.strftime('%Y-%m-%d')}")
-    print(f"Morning:\n{morning_text}")
-    print(f"Afternoon:\n{afternoon_text}")
-    print("\n" + "-"*50 + "\n")
+    st.write(f"**Date:** {current_date.strftime('%Y-%m-%d')}")
+    st.write(f"**Morning:**\n{morning_text}")
+    st.write(f"**Afternoon:**\n{afternoon_text}")
+    st.write("\n---\n")
 
 def main():
+    st.title("Onboarding Plan")
+
     # Get user input
-    full_name = input("Enter your full name: ")
-    start_date_str = input("Enter start date (YYYY-MM-DD): ")
-    start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+    full_name = st.text_input("Enter your full name")
+    start_date_str = st.text_input("Enter start date (YYYY-MM-DD)")
 
-    print(f"\nWelcome Onboard {full_name}!\n")
+    if full_name and start_date_str:
+        try:
+            start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
 
-    for week in onboarding_plan.keys():
-        for day in onboarding_plan[week].keys():
-            display_day_plan(week, day, start_date)
+            st.write(f"\n## Welcome Onboard {full_name}!\n")
+
+            for week in onboarding_plan.keys():
+                st.write(f"### {week}")
+                for day in onboarding_plan[week].keys():
+                    st.write(f"**{day}**")
+                    display_day_plan(week, day, start_date)
+
+        except ValueError:
+            st.error("Please enter a valid date in YYYY-MM-DD format")
 
 if __name__ == "__main__":
     main()
