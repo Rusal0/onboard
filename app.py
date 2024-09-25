@@ -6,8 +6,8 @@ onboarding_plan = {
     "Week 1": {
         "Day 1": {
             "Morning": [
-                ("Welcome Breakfast with the Team"
-                 Join us for a welcome breakfast to kick off your onboarding experience! This informal gathering is designed to introduce you to your new team members and help you build connections in a relaxed setting. Enjoy delicious food while engaging in light conversations about your roles, interests, and shared goals. This event aims to foster teamwork and open communication, ensuring you feel welcomed and valued as part of our organization., "John Doe"),
+                ("Welcome Breakfast with the Team",
+                 "Join us for a welcome breakfast to kick off your onboarding experience! This informal gathering is designed to introduce you to your new team members and help you build connections in a relaxed setting. Enjoy delicious food while engaging in light conversations about your roles, interests, and shared goals. This event aims to foster teamwork and open communication, ensuring you feel welcomed and valued as part of our organization.", "John Doe"),
                 ("Introduction to the Company Culture and Values", "Jane Smith"),
                 ("Overview of the Localization Department", "Emily Johnson")
             ],
