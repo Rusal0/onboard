@@ -244,9 +244,8 @@ onboarding_plan = {
             "Afternoon": [
                 {"activity": "Case Study: Stakeholder Management Successes", 
                 "contact": "David Clark", 
-                "description": "Identifying and Solving Operational Issues: Join us for an engaging workshop focused on identifying and solving operational issues within our organization. In this interactive session, you will learn to recognize common operational challenges and apply problem-solving techniques to address them effectively. Through group discussions, real-world case studies, and hands-on activities, you will collaborate with your peers to analyze operational workflows, pinpoint inefficiencies, and develop actionable solutions. This workshop will also emphasize the importance of data analysis and
-holder feedback in identifying issues and measuring the impact of proposed solutions. By the end of this session, you will be equipped with practical skills and strategies to enhance operational efficiency and drive continuous improvement within your team."},
-                {"activity": "Meeting with Stakeholders for Feedback", "contact": "Patricia Garcia", "description": "Gather feedback from stakeholders."}
+                "description": "Identifying and Solving Operational Issues: Join us for an engaging workshop focused on identifying and solving operational issues within our organization. In this interactive session, you will learn to recognize common operational challenges and apply problem-solving techniques to address them effectively. Through group discussions, real-world case studies, and hands-on activities, you will collaborate with your peers to analyze operational workflows, pinpoint inefficiencies, and develop actionable solutions. This workshop will also emphasize the importance of data analysis and holder feedback in identifying issues and measuring the impact of proposed solutions. By the end of this session, you will be equipped with practical skills and strategies to enhance operational efficiency and drive continuous improvement within your team."},
+                {"activity": "Meeting with Stakeholders for Feedback", "contact": "Patricia Garcia", "description": "Gather feedback from stakeholders."},
             ]
         },
         "Day 14": {
