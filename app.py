@@ -1,3 +1,4 @@
+import numpy as np
 import streamlit as st
 from datetime import datetime, timedelta
 
@@ -377,42 +378,19 @@ onboarding_plan = {
     }
 }
 
-def calculate_weekday_offset(start_date, week, day):
-    # Determine the day number from the week (assuming "Week 1", "Day 3" format)
-    week_number = int(week.split()[-1]) - 1  # Adjust for 0-index
-    day_number = int(day.split()[-1]) - 1  # Adjust for 0-index
-    
-    # Total working days (Monday to Friday) from the start of the onboarding
-    total_working_days = week_number * 5 + day_number
-    
-    # Calculate the target date by skipping weekends (Sat-Sun)
-    current_date = start_date
-    while total_working_days > 0:
-        current_date += timedelta(days=1)
-        # Check if the current day is a weekday (Monday=0, Sunday=6)
-        if current_date.weekday() < 5:  # Only Monday to Friday are counted
-            total_working_days -= 1
-    
-    return current_date
 
-def display_day_plan(week, day, start_date, user_name):
-    morning_activities = onboarding_plan[week][day].get("Morning", [])
-    afternoon_activities = onboarding_plan[week][day].get("Afternoon", [])
 
-    # Calculate the current date based on working days (Mon-Fri only)
-    current_date = calculate_weekday_offset(start_date, week, day)
-
-    st.write(f"**Onboarding Plan for {user_name} - {week} {day}**")
-    st.write(f"**Date:** {current_date.strftime('%Y-%m-%d')}")
-
-    # Display morning and afternoon activities
-    st.write("**Morning Activities:**")
+    st.write("### Morning Activities:")
     for activity in morning_activities:
-        st.write(f"- {activity}")
+        with st.expander(activity["activity"]):
+            st.write(f"- **Contact:** {activity['contact']}")
+            st.write(f"- **Description:** {activity['description']}")
 
-    st.write("**Afternoon Activities:**")
+    st.write("### Afternoon Activities:")
     for activity in afternoon_activities:
-        st.write(f"- {activity}")
+        with st.expander(activity["activity"]):
+            st.write(f"- **Contact:** {activity['contact']}")
+            st.write(f"- **Description:** {activity['description']}")
 
 
 def main():
