@@ -1,4 +1,3 @@
-import numpy as np
 import streamlit as st
 from datetime import datetime, timedelta
 
@@ -378,7 +377,15 @@ onboarding_plan = {
     }
 }
 
+def display_day_plan(week, day, start_date, user_name):
+    morning_activities = onboarding_plan[week][day].get("Morning", [])
+    afternoon_activities = onboarding_plan[week][day].get("Afternoon", [])
 
+    total_days = (int(week.split()[-1]) - 1) * 5 + (int(day.split()[-1]) - 1)
+    current_date = start_date + timedelta(days=total_days)
+
+    st.write(f"**Onboarding Plan for {user_name} - {week} {day}**")
+    st.write(f"**Date:** {current_date.strftime('%Y-%m-%d')}")
 
     st.write("### Morning Activities:")
     for activity in morning_activities:
