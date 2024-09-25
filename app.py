@@ -1,211 +1,543 @@
 import streamlit as st
 from datetime import datetime, timedelta
 
-# Onboarding Data with contact persons
+# Onboarding Data with contact persons and descriptions
 onboarding_plan = {
     "Week 1": {
         "Day 1": {
             "Morning": [
-                ("Welcome Breakfast with the Team", "John Doe"),
-                ("Introduction to the Company Culture and Values", "Jane Smith"),
-                ("Overview of the Localization Department", "Emily Johnson")
+                {
+                    "activity": "Welcome Breakfast with the Team",
+                    "contact": "John Doe",
+                    "description": "Join us for a welcome breakfast to kick off your onboarding experience! This informal gathering is designed to introduce you to your new team members and help you build connections in a relaxed setting. Enjoy delicious food while engaging in light conversations about your roles, interests, and shared goals. This event aims to foster teamwork and open communication, ensuring you feel welcomed and valued as part of our organization."
+                },
+                {
+                    "activity": "Introduction to the Company Culture and Values",
+                    "contact": "Jane Smith",
+                    "description": "An insightful session to understand the core values that drive our organization and shape our work culture."
+                },
+                {
+                    "activity": "Overview of the Localization Department",
+                    "contact": "Emily Johnson",
+                    "description": "A comprehensive overview of the Localization Department's structure, objectives, and ongoing projects."
+                }
             ],
             "Afternoon": [
-                ("Office Tour and Meet Key Stakeholders", "Michael Brown"),
-                ("Introduction to the Onboarding Buddy (a peer mentor)", "Chris Davis"),
-                ("Setting up Workstation and Tools", "Patricia Garcia")
+                {
+                    "activity": "Office Tour and Meet Key Stakeholders",
+                    "contact": "Michael Brown",
+                    "description": "A guided tour of the office to familiarize you with the environment and meet key stakeholders."
+                },
+                {
+                    "activity": "Introduction to the Onboarding Buddy (a peer mentor)",
+                    "contact": "Chris Davis",
+                    "description": "Meet your onboarding buddy who will guide you through the initial phase of your onboarding journey."
+                },
+                {
+                    "activity": "Setting up Workstation and Tools",
+                    "contact": "Patricia Garcia",
+                    "description": "Assistance in setting up your workstation, tools, and necessary software for your role."
+                }
             ]
         },
         "Day 2": {
             "Morning": [
-                ("Deep Dive into the Job Description and Expectations", "Robert Martinez"),
-                ("Interactive Workshop: Role-Playing Key Responsibilities", "Linda Robinson")
+                {
+                    "activity": "Deep Dive into the Job Description and Expectations",
+                    "contact": "Robert Martinez",
+                    "description": "An in-depth discussion about your role and expectations to set you up for success."
+                },
+                {
+                    "activity": "Interactive Workshop: Role-Playing Key Responsibilities",
+                    "contact": "Linda Robinson",
+                    "description": "A hands-on workshop where you can practice your key responsibilities through role-playing scenarios."
+                }
             ],
             "Afternoon": [
-                ("Meeting with Direct Supervisor to Discuss Performance Metrics", "David Clark"),
-                ("Collaborative Session: Setting Personal Goals for the First 30 Days", "Barbara Rodriguez")
+                {
+                    "activity": "Meeting with Direct Supervisor to Discuss Performance Metrics",
+                    "contact": "David Clark",
+                    "description": "Discuss your performance metrics and how success will be measured in your role."
+                },
+                {
+                    "activity": "Collaborative Session: Setting Personal Goals for the First 30 Days",
+                    "contact": "Barbara Rodriguez",
+                    "description": "Work together to set realistic and achievable personal goals for your first month."
+                }
             ]
         },
         "Day 3": {
             "Morning": [
-                ("Hands-On Training: Project Management Software", "James Lewis"),
-                ("Interactive Webinar: Localization Workflow Tools", "Mary Lee")
+                {
+                    "activity": "Hands-On Training: Project Management Software",
+                    "contact": "James Lewis",
+                    "description": "Training on the project management software that will be used in your role."
+                },
+                {
+                    "activity": "Interactive Webinar: Localization Workflow Tools",
+                    "contact": "Mary Lee",
+                    "description": "A webinar focusing on the tools used in localization workflows."
+                }
             ],
             "Afternoon": [
-                ("Case Study Review: Successful Past Projects", "William Walker"),
-                ("Q&A Session with IT Support for Troubleshooting", "Lisa Hall")
+                {
+                    "activity": "Case Study Review: Successful Past Projects",
+                    "contact": "William Walker",
+                    "description": "Review successful past projects to understand best practices."
+                },
+                {
+                    "activity": "Q&A Session with IT Support for Troubleshooting",
+                    "contact": "Lisa Hall",
+                    "description": "An opportunity to ask IT support any questions regarding your tools and systems."
+                }
             ]
         },
         "Day 4": {
             "Morning": [
-                ("Client Portfolio Overview: Key Clients and Projects", "Mark Allen"),
-                ("Interactive Session: Understanding Client Requirements", "Nancy Young")
+                {
+                    "activity": "Client Portfolio Overview: Key Clients and Projects",
+                    "contact": "Mark Allen",
+                    "description": "An overview of key clients and projects you will be working on."
+                },
+                {
+                    "activity": "Interactive Session: Understanding Client Requirements",
+                    "contact": "Nancy Young",
+                    "description": "An interactive session to dive deep into understanding client needs."
+                }
             ],
             "Afternoon": [
-                ("Workshop: Developing Client-Specific Strategies", "Steven King"),
-                ("Role-Playing: Mock Client Meetings", "Karen Wright")
+                {
+                    "activity": "Workshop: Developing Client-Specific Strategies",
+                    "contact": "Steven King",
+                    "description": "Collaborative workshop to develop strategies tailored to specific clients."
+                },
+                {
+                    "activity": "Role-Playing: Mock Client Meetings",
+                    "contact": "Karen Wright",
+                    "description": "Practice your client meeting skills in a role-playing format."
+                }
             ]
         },
         "Day 5": {
             "Morning": [
-                ("Team Building Activities", "Brian Scott"),
-                ("Networking Lunch with Cross-Functional Teams", "Sandra Green")
+                {
+                    "activity": "Team Building Activities",
+                    "contact": "Brian Scott",
+                    "description": "Engaging activities designed to build relationships within the team."
+                },
+                {
+                    "activity": "Networking Lunch with Cross-Functional Teams",
+                    "contact": "Sandra Green",
+                    "description": "A lunch session to network with members from different teams."
+                }
             ],
             "Afternoon": [
-                ("Feedback Session: First Week Review with Onboarding Buddy", "Kevin Adams"),
-                ("Planning for the Upcoming Week", "Megan Baker")
+                {
+                    "activity": "Feedback Session: First Week Review with Onboarding Buddy",
+                    "contact": "Kevin Adams",
+                    "description": "Reflect on your first week and discuss feedback with your onboarding buddy."
+                },
+                {
+                    "activity": "Planning for the Upcoming Week",
+                    "contact": "Megan Baker",
+                    "description": "Set goals and plans for your second week."
+                }
             ]
         }
     },
     "Week 2": {
         "Day 6": {
             "Morning": [
-                ("Workshop: Understanding Revenue and Profit Growth", "Michael Brown"),
-                ("Interactive Budgeting Exercise", "James Lewis")
+                {
+                    "activity": "Workshop: Understanding Revenue and Profit Growth",
+                    "contact": "Michael Brown",
+                    "description": "A workshop to understand the financial aspects of the business."
+                },
+                {
+                    "activity": "Interactive Budgeting Exercise",
+                    "contact": "James Lewis",
+                    "description": "Hands-on exercise to learn budgeting skills."
+                }
             ],
             "Afternoon": [
-                ("Case Study: Financial Reporting and Forecasting", "Linda Robinson"),
-                ("Meeting with Finance Team for Q&A", "Barbara Rodriguez")
+                {
+                    "activity": "Case Study: Financial Reporting and Forecasting",
+                    "contact": "Linda Robinson",
+                    "description": "Review case studies on financial reporting and forecasting."
+                },
+                {
+                    "activity": "Meeting with Finance Team for Q&A",
+                    "contact": "Barbara Rodriguez",
+                    "description": "Ask questions and clarify financial processes with the finance team."
+                }
             ]
         },
         "Day 7": {
             "Morning": [
-                ("Interactive Session: Workflow Management Best Practices", "Emily Johnson"),
-                ("Simulation: Managing a Complex Localization Project", "David Clark")
+                {
+                    "activity": "Interactive Session: Workflow Management Best Practices",
+                    "contact": "Emily Johnson",
+                    "description": "Learn about best practices in managing workflows effectively."
+                },
+                {
+                    "activity": "Simulation: Managing a Complex Localization Project",
+                    "contact": "David Clark",
+                    "description": "Participate in a simulation to practice managing localization projects."
+                }
             ],
             "Afternoon": [
-                ("Workshop: Continuous Improvement Strategies", "Patricia Garcia"),
-                ("Collaborative Session: Identifying Operational Bottlenecks", "Chris Davis")
+                {
+                    "activity": "Workshop: Continuous Improvement Strategies",
+                    "contact": "Patricia Garcia",
+                    "description": "Strategies to promote continuous improvement within teams."
+                },
+                {
+                    "activity": "Collaborative Session: Identifying Operational Bottlenecks",
+                    "contact": "Chris Davis",
+                    "description": "Work together to identify and address operational bottlenecks."
+                }
             ]
         },
         "Day 8": {
             "Morning": [
-                ("Interactive Workshop: Client Communication and Consultancy", "John Doe"),
-                ("Role-Playing: Client Interaction Scenarios", "Jane Smith")
+                {
+                    "activity": "Interactive Workshop: Client Communication and Consultancy",
+                    "contact": "John Doe",
+                    "description": "Learn effective communication strategies with clients."
+                },
+                {
+                    "activity": "Role-Playing: Client Interaction Scenarios",
+                    "contact": "Jane Smith",
+                    "description": "Practice client interactions through role-playing scenarios."
+                }
             ],
             "Afternoon": [
-                ("Case Study: Successful Client Management", "Michael Brown"),
-                ("Meeting with Sales Team for Collaboration Strategies", "Emily Johnson")
+                {
+                    "activity": "Case Study: Successful Client Management",
+                    "contact": "Michael Brown",
+                    "description": "Review successful client management strategies."
+                },
+                {
+                    "activity": "Meeting with Sales Team for Collaboration Strategies",
+                    "contact": "Emily Johnson",
+                    "description": "Discuss collaboration strategies with the sales team."
+                }
             ]
         },
         "Day 9": {
             "Morning": [
-                ("Training: KPI Management and Reporting", "James Lewis"),
-                ("Interactive Session: Using Data to Drive Decisions", "David Clark")
+                {
+                    "activity": "Training: KPI Management and Reporting",
+                    "contact": "James Lewis",
+                    "description": "Training on key performance indicators and how to report them."
+                },
+                {
+                    "activity": "Interactive Session: Using Data to Drive Decisions",
+                    "contact": "David Clark",
+                    "description": "Learn how to leverage data for decision-making."
+                }
             ],
             "Afternoon": [
-                ("Collaborative Workshop: Developing a KPI Dashboard", "Patricia Garcia"),
-                ("Review Session with Direct Supervisor", "Chris Davis")
+                {
+                    "activity": "Collaborative Workshop: Developing a KPI Dashboard",
+                    "contact": "Patricia Garcia",
+                    "description": "Work together to create a dashboard for tracking KPIs."
+                },
+                {
+                    "activity": "Review Session with Direct Supervisor",
+                    "contact": "Chris Davis",
+                    "description": "Review your progress and set future goals with your supervisor."
+                }
             ]
         },
         "Day 10": {
             "Morning": [
-                ("One-on-One Feedback Session with Onboarding Buddy", "John Doe"),
-                ("Team Feedback Session: Sharing Insights and Improvements", "Jane Smith")
+                {
+                    "activity": "One-on-One Feedback Session with Onboarding Buddy",
+                    "contact": "John Doe",
+                    "description": "Personal feedback session with your onboarding buddy."
+                },
+                {
+                    "activity": "Team Feedback Session: Sharing Insights and Improvements",
+                    "contact": "Jane Smith",
+                    "description": "Collaborate with the team to share insights and improvements."
+                }
             ],
             "Afternoon": [
-                ("Personal Reflection and Goal Adjustment", "Michael Brown"),
-                ("Planning for the Upcoming Week", "Emily Johnson")
+                {
+                    "activity": "Networking Event: Meet Other Teams",
+                    "contact": "Michael Brown",
+                    "description": "An event to meet and network with other teams in the organization."
+                },
+                {
+                    "activity": "Planning Session for the Next Month",
+                    "contact": "Emily Johnson",
+                    "description": "Set goals and plans for the upcoming month."
+                }
             ]
         }
     },
     "Week 3": {
         "Day 11": {
             "Morning": [
-                ("Leadership Workshop: Leading Project Managers", "Linda Robinson"),
-                ("Role-Playing: Leadership Scenarios", "Barbara Rodriguez")
+                {
+                    "activity": "Wrap-Up and Reflection on the First Two Weeks",
+                    "contact": "Michael Brown",
+                    "description": "Reflect on your experiences and prepare for the next phase."
+                },
+                {
+                    "activity": "Introduction to Compliance and Regulations",
+                    "contact": "Emily Johnson",
+                    "description": "Learn about compliance and regulatory requirements relevant to your role."
+                }
             ],
             "Afternoon": [
-                ("Mentorship Session with Senior Leaders", "David Clark"),
-                ("Collaborative Session: Developing Leadership Skills", "Patricia Garcia")
+                {
+                    "activity": "Interactive Compliance Training",
+                    "contact": "James Lewis",
+                    "description": "Hands-on training on compliance protocols and procedures."
+                },
+                {
+                    "activity": "Q&A Session with Compliance Team",
+                    "contact": "David Clark",
+                    "description": "Ask questions regarding compliance and regulations."
+                }
             ]
         },
         "Day 12": {
             "Morning": [
-                ("Interactive Session: Best Practices in Global Partnership", "Chris Davis"),
-                ("Case Study: Successful Global Collaborations", "John Doe")
+                {
+                    "activity": "Advanced Training: Software Tools for Localization",
+                    "contact": "Linda Robinson",
+                    "description": "Advanced training on the software tools used in localization."
+                },
+                {
+                    "activity": "Hands-On Practice with Tools",
+                    "contact": "Barbara Rodriguez",
+                    "description": "Hands-on practice session using localization tools."
+                }
             ],
             "Afternoon": [
-                ("Workshop: Leveraging Global Resources", "Jane Smith"),
-                ("Networking Session with International Teams", "Michael Brown")
+                {
+                    "activity": "Team Project: Applying Tools in Real Scenarios",
+                    "contact": "Chris Davis",
+                    "description": "Work on a team project applying learned tools in real scenarios."
+                },
+                {
+                    "activity": "Feedback and Review Session",
+                    "contact": "Patricia Garcia",
+                    "description": "Review your team project and receive feedback."
+                }
             ]
         },
         "Day 13": {
             "Morning": [
-                ("Interactive Workshop: Advanced Client Strategies", "Emily Johnson"),
-                ("Role-Playing: Handling Difficult Client Situations", "James Lewis")
+                {
+                    "activity": "Introduction to Project Lifecycle in Localization",
+                    "contact": "Michael Brown",
+                    "description": "Learn about the project lifecycle specific to localization projects."
+                },
+                {
+                    "activity": "Case Study: Localization Project Management",
+                    "contact": "Emily Johnson",
+                    "description": "Review a case study focusing on project management in localization."
+                }
             ],
             "Afternoon": [
-                ("Meeting with Key Clients for Introduction", "David Clark"),
-                ("Collaborative Session: Developing Client-Specific Plans", "Patricia Garcia")
+                {
+                    "activity": "Workshop: Effective Time Management Strategies",
+                    "contact": "James Lewis",
+                    "description": "Learn strategies for effective time management in project work."
+                },
+                {
+                    "activity": "Peer Review: Evaluating Project Proposals",
+                    "contact": "David Clark",
+                    "description": "Evaluate project proposals as a peer review exercise."
+                }
             ]
         },
         "Day 14": {
             "Morning": [
-                ("Training: Advanced Continuous Improvement Techniques", "Chris Davis"),
-                ("Simulation: Implementing Improvement Strategies", "John Doe")
+                {
+                    "activity": "Interactive Training: Cultural Sensitivity in Localization",
+                    "contact": "Linda Robinson",
+                    "description": "Training on the importance of cultural sensitivity in localization."
+                },
+                {
+                    "activity": "Role-Playing: Navigating Cultural Differences",
+                    "contact": "Barbara Rodriguez",
+                    "description": "Practice navigating cultural differences through role-playing scenarios."
+                }
             ],
             "Afternoon": [
-                ("Workshop: Identifying and Solving Operational Issues", "Jane Smith"),
-                ("Feedback Session with Direct Supervisor", "Michael Brown")
+                {
+                    "activity": "Feedback Session: Cultural Sensitivity Training",
+                    "contact": "Chris Davis",
+                    "description": "Provide feedback on the cultural sensitivity training."
+                },
+                {
+                    "activity": "Planning for the Final Project",
+                    "contact": "Patricia Garcia",
+                    "description": "Plan your final project for the onboarding program."
+                }
             ]
         },
         "Day 15": {
             "Morning": [
-                ("One-on-One Feedback Session with Onboarding Buddy", "Emily Johnson"),
-                ("Team Feedback Session: Sharing Insights and Improvements", "James Lewis")
+                {
+                    "activity": "Project Kick-Off Meeting for Final Project",
+                    "contact": "Michael Brown",
+                    "description": "Kick-off meeting for your final project, outlining expectations and goals."
+                },
+                {
+                    "activity": "Team Roles and Responsibilities Discussion",
+                    "contact": "Emily Johnson",
+                    "description": "Discuss roles and responsibilities within the project team."
+                }
             ],
             "Afternoon": [
-                ("Personal Reflection and Goal Adjustment", "David Clark"),
-                ("Planning for the Upcoming Week", "Patricia Garcia")
+                {
+                    "activity": "Research Session: Gathering Necessary Information",
+                    "contact": "James Lewis",
+                    "description": "Conduct research to gather information for your final project."
+                },
+                {
+                    "activity": "Preparation for Final Project Presentation",
+                    "contact": "David Clark",
+                    "description": "Begin preparation for presenting your final project."
+                }
             ]
         }
     },
     "Week 4": {
         "Day 16": {
             "Morning": [
-                ("Review of All Tools, Processes, and Strategies", "Chris Davis"),
-                ("Interactive Q&A Session with Key Stakeholders", "John Doe")
+                {
+                    "activity": "Final Project Work Session",
+                    "contact": "Linda Robinson",
+                    "description": "Dedicated time for working on your final project."
+                },
+                {
+                    "activity": "Mentorship Meeting: Guidance on Final Project",
+                    "contact": "Barbara Rodriguez",
+                    "description": "Meet with your mentor for guidance on your final project."
+                }
             ],
             "Afternoon": [
-                ("Final Adjustments to Personal Goals and Plans", "Jane Smith"),
-                ("Collaborative Session: Finalizing Client-Specific Strategies", "Michael Brown")
+                {
+                    "activity": "Mock Presentations: Practice Your Project Pitch",
+                    "contact": "Chris Davis",
+                    "description": "Practice presenting your final project in a mock setting."
+                },
+                {
+                    "activity": "Feedback Session: Peer Review of Projects",
+                    "contact": "Patricia Garcia",
+                    "description": "Provide and receive feedback on project presentations."
+                }
             ]
         },
         "Day 17": {
             "Morning": [
-                ("Workshop: Advanced Communication Skills", "Emily Johnson"),
-                ("Role-Playing: Risk Analysis and Decision-Making", "James Lewis")
+                {
+                    "activity": "Final Project Presentation Day",
+                    "contact": "Michael Brown",
+                    "description": "Present your final project to the team and receive feedback."
+                },
+                {
+                    "activity": "Q&A Session: Discussing Feedback and Next Steps",
+                    "contact": "Emily Johnson",
+                    "description": "Discuss feedback received during presentations and outline next steps."
+                }
             ],
             "Afternoon": [
-                ("Mentorship Session: Soft Skills Development", "David Clark"),
-                ("Collaborative Session: Peer Feedback and Improvement", "Patricia Garcia")
+                {
+                    "activity": "Celebration: Success of Final Projects",
+                    "contact": "James Lewis",
+                    "description": "Celebrate the success of your final project and onboarding journey."
+                },
+                {
+                    "activity": "Wrap-Up Meeting: Final Thoughts and Reflections",
+                    "contact": "David Clark",
+                    "description": "A wrap-up meeting to share final thoughts and reflections on your onboarding experience."
+                }
             ]
         },
         "Day 18": {
             "Morning": [
-                ("Full-Day Simulation: Managing a Live Localization Project", "Chris Davis"),
-                ("Real-Time Feedback from Team and Stakeholders", "John Doe")
+                {
+                    "activity": "Follow-Up: Continuous Learning Opportunities",
+                    "contact": "Linda Robinson",
+                    "description": "Learn about continuous learning opportunities available within the organization."
+                },
+                {
+                    "activity": "Networking Session: Connecting with Alumni",
+                    "contact": "Barbara Rodriguez",
+                    "description": "Connect with alumni and learn from their experiences."
+                }
+            ],
+            "Afternoon": [
+                {
+                    "activity": "Goal Setting for the Next 90 Days",
+                    "contact": "Chris Davis",
+                    "description": "Set personal and professional goals for the next 90 days."
+                },
+                {
+                    "activity": "Feedback Survey: Improving the Onboarding Experience",
+                    "contact": "Patricia Garcia",
+                    "description": "Complete a survey to provide feedback on your onboarding experience."
+                }
             ]
         },
         "Day 19": {
             "Morning": [
-                ("Final Review with Direct Supervisor and Onboarding Buddy", "Jane Smith"),
-                ("Adjusting Strategies Based on Feedback", "Michael Brown")
+                {
+                    "activity": "Team Integration: Joining Regular Meetings",
+                    "contact": "Michael Brown",
+                    "description": "Start joining regular team meetings to integrate into the team."
+                },
+                {
+                    "activity": "Shadowing: Observing Experienced Team Members",
+                    "contact": "Emily Johnson",
+                    "description": "Shadow experienced team members to learn from their expertise."
+                }
             ],
             "Afternoon": [
-                ("Collaborative Session: Ensuring Readiness for Going Live", "Emily Johnson"),
-                ("Team Meeting: Final Preparations", "James Lewis")
+                {
+                    "activity": "Project Involvement: Engaging in Ongoing Projects",
+                    "contact": "James Lewis",
+                    "description": "Engage in ongoing projects to apply your learning."
+                },
+                {
+                    "activity": "Feedback Loop: Continuous Improvement Discussions",
+                    "contact": "David Clark",
+                    "description": "Participate in discussions focused on continuous improvement."
+                }
             ]
         },
         "Day 20": {
             "Morning": [
-                ("Officially Taking Over Responsibilities", "David Clark"),
-                ("Support Available from Onboarding Buddy and Team", "Patricia Garcia")
+                {
+                    "activity": "Celebration: Completion of the Onboarding Program",
+                    "contact": "Linda Robinson",
+                    "description": "Celebrate the completion of your onboarding program with the team."
+                },
+                {
+                    "activity": "Final Reflections and Moving Forward",
+                    "contact": "Barbara Rodriguez",
+                    "description": "Reflect on your onboarding experience and look forward to your future contributions."
+                }
             ],
             "Afternoon": [
-                ("Continuous Monitoring and Feedback", "Chris Davis"),
-                ("Celebratory Team Event", "John Doe")
+                {
+                    "activity": "Networking: Building Your Internal Network",
+                    "contact": "Chris Davis",
+                    "description": "Focus on building your internal network within the organization."
+                },
+                {
+                    "activity": "Final Wrap-Up: Key Takeaways and Closing",
+                    "contact": "Patricia Garcia",
+                    "description": "Wrap up your onboarding experience with key takeaways and closing thoughts."
+                }
             ]
         }
     }
@@ -218,37 +550,29 @@ def display_day_plan(week, day, start_date):
     total_days = (int(week.split()[-1]) - 1) * 5 + (int(day.split()[-1]) - 1)
     current_date = start_date + timedelta(days=total_days)
 
-    # Join morning activities with line breaks between each
-    morning_text = "\n".join([f"- {activity[0]} (Contact: {activity[1]})" for activity in morning_activities])
-    # Join afternoon activities with line breaks between each
-    afternoon_text = "\n".join([f"- {activity[0]} (Contact: {activity[1]})" for activity in afternoon_activities])
+    st.write(f"**Date: {current_date.strftime('%Y-%m-%d')} - {week} {day}**")
+    st.write("### Morning Activities:")
+    for activity in morning_activities:
+        st.write(f"- **Activity:** {activity['activity']}")
+        st.write(f"  - **Contact:** {activity['contact']}")
+        st.write(f"  - **Description:** {activity['description']}")
 
-    st.write(f"**Date:** {current_date.strftime('%Y-%m-%d')}")
-    st.markdown(f"**Morning:**\n{morning_text}")
-    st.markdown(f"**Afternoon:**\n{afternoon_text}")
-    st.markdown("---")  # Adds a horizontal rule for separation
+    st.write("### Afternoon Activities:")
+    for activity in afternoon_activities:
+        st.write(f"- **Activity:** {activity['activity']}")
+        st.write(f"  - **Contact:** {activity['contact']}")
+        st.write(f"  - **Description:** {activity['description']}")
+
 
 def main():
-    st.title("Onboarding Plan")
+    st.title("30-Day Onboarding Plan")
+    start_date = st.date_input("Select Start Date", value=datetime.today())
 
-    # Get user input
-    full_name = st.text_input("Enter your full name")
-    start_date_str = st.text_input("Enter start date (YYYY-MM-DD)")
+    week_choice = st.selectbox("Select Week", options=list(onboarding_plan.keys()))
+    day_choice = st.selectbox("Select Day", options=list(onboarding_plan[week_choice].keys()))
 
-    if full_name and start_date_str:
-        try:
-            start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+    display_day_plan(week_choice, day_choice, start_date)
 
-            st.write(f"\n## Welcome Onboard {full_name}!\n")
-
-            for week in onboarding_plan.keys():
-                st.write(f"### {week}")
-                for day in onboarding_plan[week].keys():
-                    st.write(f"**{day}**")
-                    display_day_plan(week, day, start_date)
-
-        except ValueError:
-            st.error("Please enter a valid date in YYYY-MM-DD format")
 
 if __name__ == "__main__":
     main()
